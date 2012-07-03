@@ -15,8 +15,7 @@
 	<default>
 		
 		<!-- Remove blocks globally -->
-		<remove name="top.links"/>	
-		<remove name="catalog.compare.sidebar"/>
+		<remove name="top.links"/>
 		        
 		<!-- Remove callouts globally -->
         <remove name="right.permanent.callout" />
@@ -61,27 +60,44 @@
 
 		<reference name="header">
 		
-		<block type="page/template_links" name="top.links.custom" as="topLinksCustom">
-			<!--
-			<block type="wishlist/links" name="wishlist_link"/>
-            <action method="addLinkBlock"><blockName>wishlist_link</blockName></action>
-			-->
-			<block type="checkout/links" name="checkout_cart_link">
-                <action method="addCartLink"></action>
-                <!--
-				<action method="addCheckoutLink"></action>
+			<block type="page/template_links" name="top.links.custom" as="topLinksCustom">
+				<!--
+				<block type="wishlist/links" name="wishlist_link"/>
+				<action method="addLinkBlock"><blockName>wishlist_link</blockName></action>
 				-->
-            </block>
-			<action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position></action>
-		</block>
-		
-		<block type="directory/currency" name="top_currency" template="directory/currency.phtml"/>
-		<block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"/>
-		
-		<reference name="top.bar">
-            <action method="unsetChild"><alias>topSearch</alias></action>
-        </reference>
+				<block type="checkout/links" name="checkout_cart_link">
+					<action method="addCartLink"></action>
+					<!--
+					<action method="addCheckoutLink"></action>
+					-->
+				</block>
+				<action method="addLink" translate="label title" module="customer"><label>My Account</label><url helper="customer/getAccountUrl"/><title>My Account</title><prepare/><urlParams/><position>10</position></action>
+			</block>
+			
+			<block type="directory/currency" name="top_currency" template="directory/currency.phtml"/>
+			<block type="core/template" name="top.search" as="topSearch" template="catalogsearch/form.mini.phtml"/>
+			
+			<reference name="top.bar">
+				<action method="unsetChild"><alias>topSearch</alias></action>
+			</reference>
 
+		</reference>
+
+<!-- 
+	Default Left Column 
+-->
+
+		<reference name="left">
+			<action method="unsetChild"><alias>currency</alias></action>        
+			<block type="catalog/product_compare_sidebar" before="cart_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+		</reference>
+
+<!-- 
+	Default Right Column 
+-->
+
+		<reference name="right">
+			<action method="unsetChild"><alias>currency</alias></action>
 		</reference>
 
 <!-- 
@@ -99,64 +115,104 @@
 		</reference>
 
 
-<!-- 
-	Default Left Column 
--->
-
-		<reference name="left">
-			<reference name="left">
-				<action method="unsetChild"><alias>currency</alias></action>        
-			</reference>
-		</reference>
-
-<!-- 
-	Default Right Column 
--->
-
-		<reference name="right">
-			<reference name="left">
-				<action method="unsetChild"><alias>currency</alias></action>        
-			</reference>
-		</reference>
-
 	</default>
 	
 	
 <!--
-	Category default layered navigation layout
+Category default layout
 -->
 
-    <catalog_category_default>
+    <catalog_category_default translate="label">
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
         <reference name="left">
             <action method="unsetChild"><alias>currency</alias></action>        
 		</reference>
     </catalog_category_default>
-	
+
 <!--
-	Category layered navigation layout
+Category layered navigation layout
 -->
 
-    <catalog_category_layered>
+    <catalog_category_layered translate="label">
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
         <reference name="left">
             <action method="unsetChild"><alias>currency</alias></action>        
 		</reference>
     </catalog_category_layered>
+
+    <catalog_category_layered_nochildren translate="label">
+        <remove name="right.reports.product.viewed"/>
+        <reference name="left">
+            <!--block type="reports/product_viewed" name="left.reports.product.viewed" template="reports/product_viewed.phtml"/-->
+        </reference>
+    </catalog_category_layered_nochildren>
 	
 <!--
 	Product view
 -->
 
 	 <catalog_product_view>
-		
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
 		<reference name="head">
 			<action method="addItem"><type>skin_js</type><name>js/galleria-1.2.7.min.js</name></action>
 			<action method="addItem"><type>skin_js</type><name>js/galleria.classic.min.js</name></action>
 			<action method="addItem"><type>skin_css</type><name>css/galleria.classic.css</name></action>
 		</reference>
-		
-		<reference name="root">
-			<action method="setTemplate"><template>page/1column.phtml</template></action>
+		<reference name="product.info">
+			<action method="unsetChild">
+				<name>info_tabs</name>
+			</action>
+			<block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
+				<action method="addTab" translate="title" module="catalog">
+					<alias>description</alias>
+					<title>Details</title>
+					<block>catalog/product_view_description</block>
+					<template>catalog/product/view/description.phtml</template>
+				</action>				
+				<action method="addTab" translate="title" module="catalog">
+					<alias>upsell_products</alias>
+					<title>You may also like</title>
+					<block>catalog/product_list_upsell</block>
+					<template>catalog/product/list/upsell.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="catalog">
+					<alias>additional</alias>
+					<title>Additional Information</title>
+					<block>catalog/product_view_attributes</block>
+					<template>catalog/product/view/attributes.phtml</template>
+				</action>
+				<action method="addTab" translate="title" module="tag">
+					<alias>product.tags</alias>
+					<title>Product Tags</title>
+					<block>tag/product_list</block>
+					<template>tag/list.phtml</template>
+				</action>
+				<!-- neat trick to include a CMS Static block directly in the tab -->
+				<action method="addTab" translate="title" module="catalog">
+					<alias>shipping</alias>
+					<title>Shipping Costs</title>
+					<block>cms/block</block>
+					<template>null</template>
+				</action>
+				<!-- define the CMS block ID for the shipping info tab -->
+				<block type="cms/block" name="product.info.tabs.shipping" as="shipping">
+					<action method="setBlockId"><block_id>tab-product-shipping</block_id></action>
+				</block>
+			</block>
 		</reference>
+		<reference name="upsell_products">
+            <action method="setColumnCount"><columns>5</columns></action>
+            <action method="setItemLimit"><type>upsell</type><limit>5</limit></action>
+        </reference>
+        <reference name="left">
+            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
+        </reference>
 	 </catalog_product_view>	
 	 
 <!-- 
