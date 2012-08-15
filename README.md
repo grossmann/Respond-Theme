@@ -12,4 +12,3 @@
 <p><strong><a href="http://respondtheme.com/demo">Live Demo</a></strong></p>
 <p><strong><a href="http://respondtheme.com/documentation">Documentation & Installation</a></strong></p>
 <p>If you are having problems with the theme you may want to check out the <a href="http://respondtheme.com/faq/">FAQ</a> page or <a href="http://respondtheme.com/blog/">blog</a> for information that might help.</p>
-<p>If you have and suggestions or notice any bugs you can <a href="http://respondtheme.com/contact/">Contact Me</a>. Please provide details of your Magento version, Theme version and URL of a live site if you have one when submitting a bug.</p> 
