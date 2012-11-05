@@ -441,7 +441,7 @@ h1									{ font-size: 36px;  line-height: 1; font-family: colaboratelightregul
 h2									{ font-size: 28px; line-height: 1.285714286; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 36/28 */
 h3									{ font-size: 22px; line-height: 1.636363636; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 36/22 */
 h4									{ font-size: 18px; line-height: 1; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 18/18 */
-h5									{ font-size: 15px;  line-height: 1.2; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 18/36 */
+h5									{ font-size: 15px;  line-height: 1.2; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 18/15 */
 h6									{ font-size: 13px; line-height: 1.384615385; font-family: colaborateregular, tahoma, arial, sans-serif; }/* 18/13 */
 
 
@@ -2183,7 +2183,7 @@ px      40    100    160    220    280    340    400    460    520    580   640 
 	.col2-right-layout .col-right { float: right; width: 160px; }
 	
 	.products-grid li.item {  }
-	.sorter .view-mode { display: visible; float: left; margin: 0; }
+	.sorter .view-mode { float: left; margin: 0; }
 	
 	.cart div.discount, .cart div.shipping { width: 220px;  }
 	.cart .totals { width: 220px;}
@@ -2374,7 +2374,7 @@ px      40    100    160    220    280    340                        */
 	
 	.products-grid li.item { position: relative; width: 157px; }
 	
-	.sorter .view-mode { display: visible; float: left; margin: 0; }
+	.sorter .view-mode { float: left; margin: 0; }
 	
 	.col1-layout .product-view .product-img-box { width: 340px; }
 	
