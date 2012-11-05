@@ -1064,8 +1064,8 @@ tr.summary-details-excluded { font-style:italic; }
 /* View Type: Grid */
 .products-grid { position:relative; }
 .products-grid.last { border-bottom:0; }
-ul.products-grid { margin: 18px -20px; }
-.products-grid li.item { display: inline-block; vertical-align: top; width:157px; margin-left: 20px; padding-bottom:18px;  }
+ul.products-grid { margin: 18px -20px; font-size: 0; }
+.products-grid li.item { display: inline-block; vertical-align: top; width:160px; margin-left: 20px; padding-bottom:18px;  }
 .products-grid li.last { margin-right: 0; }
 .products-grid .product-image { display: block; margin-bottom: 2px; }
 .products-grid .product-image img { display:block; height: auto; max-width: 100%; width: auto; /* Prevents scaling problem in IE8; */ margin:0 0; }
