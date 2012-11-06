@@ -1,3 +1,22 @@
+# generic files to ignore
+# backup files (*~) and vim swap file (.swp), MacOS dir file (.DS_Store)
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+#IDE files to ignore (Netbeans, Eclipse)
+nbproject/private/
+.classpath
+.project
+.settings
+.buildpath
+
+#except this file
+!.gitignore
+
+#custom project files (not needed with modman use)
 app/code/community/Find/
 app/code/community/Phoenix/
 app/code/core/
