@@ -34,10 +34,6 @@
     $_product = $this->getProduct();
     $_helper = $this->helper('catalog/output');
 ?>
-    <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize().'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-        echo $_helper->productAttribute($_product, $_img, 'image');
-    ?>
 	<?php if (count($this->getGalleryImages()) > 1): ?>
     <?php foreach ($this->getGalleryImages() as $_image): ?>
            <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" />
